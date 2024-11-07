@@ -77,6 +77,25 @@ int remover() {
 	}
 }
 
+void inverterLista () {
+    if (!verificarVazia()) {
+        if (f.final < 1) {
+            printf ("Nao existem elementos o suficiente para realizar a acao.");
+        } else {
+            int temp, end, i;
+            end = f.final;
+            for (i = 0; i <= (f.final / 2); i++) {
+                temp = f.vetor[end];
+                f.vetor[end] = f.vetor[i];
+                f.vetor[i] = temp;
+                end--;
+            }
+        }
+    } else {
+        printf ("A fila estah vazia.");
+    }
+}
+
 int main(int argc, char *argv[]) {
 	int temp;
 	int opcao;
@@ -89,7 +108,8 @@ int main(int argc, char *argv[]) {
 		printf("\n2. Inserir");
 		printf("\n3. Remover");
 		printf("\n4. Imprimir");
-		printf("\n5. Sair");
+		printf("\n5. Inverter Fila");
+		printf("\n6. Sair");
 		printf("\nDigite a opcao desejada: ");
 		
 		//ler a opcao desejada pelo usuario
@@ -113,11 +133,14 @@ int main(int argc, char *argv[]) {
 				imprimir();
 				break;
 			case 5:
+				inverterLista();
+				break;
+			case 6:
 				printf("Encerrando o programa...");
 				break;
 			default:
 				printf("\nOpcao invalida. Escolha um numero valido de opcao.");
 		}
 		
-	} while(opcao != 5);
+	} while(opcao != 6);
 }
