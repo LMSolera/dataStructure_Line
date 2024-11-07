@@ -2,22 +2,17 @@
 #include <stdlib.h>
 #define TAM_MAX 10
 
-typedef struct _pedido {
-    int identificador;
-    char desc[100];
-} Pedido;
-
-typedef struct _fila {
-	Pedido vetor[TAM_MAX];
-	int final;
-} Fila;
-
-void inserir(Pedido p);
+void inserir(int numero);
 void inicializar();
 int verificarVazia();
 int verificarCheia();
 void imprimir();
-Pedido remover();
+int remover();
+
+typedef struct _fila {
+	int vetor[TAM_MAX];
+	int final;
+} Fila;
 
 Fila f;
 
@@ -37,13 +32,13 @@ int verificarCheia() {
 	else return 0;
 }
 
-void inserir(Pedido p){
+void inserir(int numero){
 	//verificar se a fila nao estah cheia
 	if(!verificarCheia()) {
 		//atualiza o final da fila	
 		f.final++;
 		//insere o numero no vetor no final
-		f.vetor[f.final] = p;
+		f.vetor[f.final] = numero;
 	} else {
 		//informa o usuario que a fila estah cheia
 		printf("\nA fila estah cheia.");
@@ -56,27 +51,23 @@ void imprimir(){
 		int i;
 		printf("\nOs elementos na fila sao: ");
 		//percorrer o vetor de 0 ateh f.final
-		for(i = 0; i <= f.final; i++) {
-            //imprimir o elemento na posicao i
-            printf ("\nPedido %d:", i+1);
-			printf("\nIdentificador: %d", f.vetor[i].identificador);
-            printf("\nDescricao: %s\n", f.vetor[i].desc);
-        }
+		for(i = 0; i <= f.final; i++)
+			//imprimir o elemento na posicao i
+			printf(" %d", f.vetor[i]);
 	} else {
 		printf("\nA fila estah vazia.");
 	}
 }
 
-Pedido remover() {
-	//verificar se a fila não estah vazia
+int remover() {
+	//verificar se a fila n�o estah vazia
 	if(!verificarVazia()) {
-		Pedido aux;
-        int i;
-		//aux ir� guardar o elemento do início da fila
+		int aux, i;
+		//aux ir� guardar o elemento do in�cio da fila
 		aux = f.vetor[0];
 		//translada os elementos do inicio ao fim -1
 		for(i = 0; i <= f.final -1; i++)
-			//a posição i receber o valor da posição i+1
+			//a posi��o i receber o valor da posi��o i+1
 			f.vetor[i] = f.vetor[i+1];
 		//atualizar o final da fila
 		f.final--;
@@ -91,7 +82,6 @@ void inverterLista () {
         if (f.final < 1) {
             printf ("Nao existem elementos o suficiente para realizar a acao.");
         } else {
-            Pedido temp;
 			int end, i;
             end = f.final;
             for (i = 0; i <= (f.final / 2); i++) {
@@ -107,7 +97,7 @@ void inverterLista () {
 }
 
 int main(int argc, char *argv[]) {
-	Pedido temp;
+	int temp;
 	int opcao;
 	inicializar();
 
@@ -131,17 +121,13 @@ int main(int argc, char *argv[]) {
 				inicializar();
 				break;
 			case 2:
-				printf("Digite o numero de identificacao: ");
-				scanf("%d", &temp.identificador);
-                printf ("Descreva o pedido: ");
-                getchar();
-                scanf ("%[^\n]", &temp.desc);
+				printf("Digite o numero: ");
+				scanf("%d", &temp);
 				inserir(temp);
 				break;
 			case 3:
 				temp = remover();
-				printf("\nIdentificador do pedido removido: %d", temp.identificador);
-                printf ("\nDescricao do pedido removido: %s", temp.desc);
+				printf("\nNumero removido: %d", temp);
 				break;
 			case 4:
 				imprimir();
