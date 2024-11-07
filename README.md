@@ -6,5 +6,3 @@ Luis Miguel S. Solera - [Perfil Github](https://github.com/LMSolera)
 
 ## Origem
 Trabalho para a matéria de Engenharia de Software, ensinada por Agostinho Quissanga, no segundo período do curso de Análise e Desenvolvimento de Softwares da Insituição Federal do Estado de São Paulo. 
-
-## Referências
