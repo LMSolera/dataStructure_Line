@@ -82,7 +82,7 @@ void inverterLista () {
         if (f.final < 1) {
             printf ("Nao existem elementos o suficiente para realizar a acao.");
         } else {
-            int temp, end, i;
+			int end, i;
             end = f.final;
             for (i = 0; i <= (f.final / 2); i++) {
                 temp = f.vetor[end];
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 		printf("\n2. Inserir");
 		printf("\n3. Remover");
 		printf("\n4. Imprimir");
-		printf("\n5. Inverter Fila");
+		printf("\n5. Inverter ordem da fila");
 		printf("\n6. Sair");
 		printf("\nDigite a opcao desejada: ");
 		
